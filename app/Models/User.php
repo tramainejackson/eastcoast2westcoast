@@ -2,43 +2,103 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
+	use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	/**
+	 * Get the user's first name.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getFirstNameAttribute($value)
+	{
+		return ucfirst(strtolower($value));
+	}
+
+	/**
+	 * Set the user's first name.
+	 *
+	 * @param  string  $value
+	 * @return void
+	 */
+	public function setFirstNameAttribute($value)
+	{
+		$this->attributes['first_name'] = ucwords(strtolower($value));
+	}
+
+	/**
+	 * Get the user's last name.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getLastNameAttribute($value)
+	{
+		return ucwords(strtolower($value));
+	}
+
+	/**
+	 * Set the user's last name.
+	 *
+	 * @param  string  $value
+	 * @return void
+	 */
+	public function setLastNameAttribute($value)
+	{
+		$this->attributes['last_name'] = ucfirst(strtolower($value));
+	}
+
+	/**
+	 * Get the user's last name.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getEmailAttribute($value)
+	{
+		return strtolower($value);
+	}
+
+	/**
+	 * Set the user's last name.
+	 *
+	 * @param  string  $value
+	 * @return void
+	 */
+	public function setEmailAttribute($value)
+	{
+		$this->attributes['email'] = strtolower($value);
+	}
 }

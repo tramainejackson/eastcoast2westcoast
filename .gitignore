@@ -8,6 +8,7 @@
 /public/css/custom_styles.min.css
 /public/css/md-form.min.css
 /public/css/style.min.css
+/public/js/chart*
 /public/js/mdb*
 /public/js/free
 /public/js/jquery*
