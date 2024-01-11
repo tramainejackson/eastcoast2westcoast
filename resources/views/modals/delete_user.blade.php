@@ -16,8 +16,8 @@
 						<p class="e">Deleting this user will remove them completely.<br/>Are you sure you want to delete this user?</p>
 
 						<div class="d-flex justify-content-between align-items-center">
-							<button type="submit" class="btn btn-success">Confirm</button>
-							<button type="button" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancel</button>
+							<button type="submit" class="btn btn-success" data-mdb-ripple-init>Confirm</button>
+							<button type="button" class="btn btn-warning" data-mdb-ripple-init data-mdb-dismiss="modal">Cancel</button>
 						</div>
 					</div>
 				</form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,15 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $user = Auth::user();
 		$getAllusers = User::all();
+        $last_login = session('last_login');
 
-        return view('admin.users.index', compact('getAllusers'));
+        //Update last login
+        $user->last_login = now();
+        $user->save();
+
+        return view('admin.users.index', compact('getAllusers', 'last_login'));
     }
 
     /**

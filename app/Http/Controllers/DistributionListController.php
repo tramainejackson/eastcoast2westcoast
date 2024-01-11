@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
-use App\DistributionList;
-use App\TripLocations;
-use App\Mail\Confirmation;
+use App\Models\Contact;
+use App\Models\DistributionList;
+use App\Models\TripLocations;
+use App\Mail\SignUpConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +23,7 @@ class DistributionListController extends Controller
     {
         $this->middleware('auth')->except('store');
     }
-	
+
     /**
      * Display a listing of the resource.
      *
@@ -66,8 +66,8 @@ class DistributionListController extends Controller
 				'last_name'     => $request->last_name,
 				'email_address' => $request->email
 			])) {
-				\Mail::to($request->email)->cc(['jacksond1961@yahoo.com', 'rhonda.lambert@sbcglobal.com'])->send(new Confirmation($tripLocation, $request->first_name, $request->last_name, $request->email));
-//				\Mail::to($request->email)->send(new Confirmation($tripLocation, $request->first_name, $request->last_name, $request->email));
+				\Mail::to($request->email)->cc(['jacksond1961@yahoo.com', 'rhonda.lambert@sbcglobal.com'])->send(new SignUpConfirmation($tripLocation, $request->first_name, $request->last_name, $request->email));
+//				\Mail::to($request->email)->send(new SignUpConfirmation($tripLocation, $request->first_name, $request->last_name, $request->email));
 
 				return redirect()->action('TripLocationsController@show', $tripLocation)->with('status', 'Thanks for signing up for the trip to ' . $tripLocation->trip_location);
 			}

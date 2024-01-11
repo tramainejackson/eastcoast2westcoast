@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -101,4 +102,21 @@ class User extends Authenticatable
 	{
 		$this->attributes['email'] = strtolower($value);
 	}
+
+    /**
+     * Get the customers last login.
+     *
+     * @param  string  $value
+     * @return carbon
+     */
+    public function getLastLoginAttribute($value)
+    {
+        $last_login = $value;
+
+        if($last_login == NULL) {
+        } else {
+            $last_login = new Carbon($value);
+        }
+        return $last_login;
+    }
 }

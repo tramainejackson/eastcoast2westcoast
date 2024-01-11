@@ -2,11 +2,18 @@
 
     <div class="col-12 px-5" id="">
 
-        <div id="users_page_header" class="">
-            <h1 class="pageTopicHeader">All Admins</h1>
-        </div>
+        <div class="container-fluid my-3 pt-3" id="admin_users_links">
+            <div class="row">
+                <div id="" class="col-12 col-md-6">
+                    <h1 class="pageTopicHeader text-center text-md-start">All Admin Users</h1>
+                </div>
 
-        <a href="{{ route('admin.create') }}" class="btn btn-success">Create New User</a>
+                <div class="col-12 col-md-6 text-center">
+                    <x-button-link href="{{ route('admin.create') }}" class="btn-primary ms-3">Create New Admin Users
+                    </x-button-link>
+                </div>
+            </div>
+        </div>
 
         <div class="row mt-4">
 
@@ -14,8 +21,6 @@
 
                 <div class="row" id="">
                     @foreach($getAllusers as $user)
-
-                        @php $user->active == 'Y' ? $user->active = 'Active' : $user->active = 'Inactive'; @endphp
 
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
                             <div class="card text-center border border-1 border-secondary-subtle">
@@ -25,8 +30,8 @@
                                 <div class="card-body">
                                     <div class="">
                                         <p class="mb-0">User account is currently</p>
-                                        <button class='btn {{ $user->active == 'Active' ? 'btn-success' : 'btn-danger' }}'
-                                                type='button'>{{ $user->active }}</button>
+                                        <button class='btn {{ $user->active == 'Y' ? 'btn-success' : 'btn-danger' }}'
+                                                type='button'>{{ $user->active == 'Y' ? 'Active' : 'Inactive' }}</button>
                                     </div>
 
                                     <div class="mt-4 mb-2">
@@ -36,8 +41,10 @@
                                     <div class="card-footer">
                                         @if(Auth::id() == $user->id)
                                             <span class="grey-text font-italic font-small">Currently Logged In</span>
+                                            <br/>
+                                            <span class="grey-text font-italic font-small">Last Login - {{ $last_login }}</span>
                                         @else
-                                            <span class="grey-text font-italic font-small">Last Login - </span>
+                                            <span class="grey-text font-italic font-small">Last Login - {{ $user->last_login == NULL ? 'User Has Not Logged In Yet' : $user->last_login }}</span>
                                         @endif
                                     </div>
                                 </div>
