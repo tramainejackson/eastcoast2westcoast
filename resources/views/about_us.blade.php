@@ -1,13 +1,13 @@
 <x-app-layout>
 
     <div
-        class="col-12 col-md-8 full-height d-flex align-items-center flex-column justify-content-center mb-md-n5 mx-auto"
+        class="col-11 col-md-8 d-flex align-items-center flex-column justify-content-center mb-md-n5 mx-auto"
         id="">
 
-        <h2 class="display-3 font-weight-bold">About Us</h2>
+        <h2 class="display-3 fw-bold">About Us</h2>
 
-        <div class="" id="about_us_div">
-            <p class="white text-black p-3 rounded">
+        <div class="" id="about_us_div mt-4">
+            <p class="fw-light p-3">
                 Here at EastCoast to WestCoast Travel, we have the ultimate family oriented experience because that's
                 how we got started. A group of friends decided that we wanted to travel and see the world. And who
                 better to do that with than the closest people to you. So tell a brother, sister, cousin, friend,

@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="col-12 p-5 mt-5 text-center">
-        <h2 class="display-3 font-weight-bold">Contact Us</h2>
+        <h2 class="display-3 fw-bold">Contact Us</h2>
     </div>
 
     <div class="col-12 mx-auto">

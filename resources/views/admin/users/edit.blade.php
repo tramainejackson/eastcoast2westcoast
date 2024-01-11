@@ -15,7 +15,7 @@
 
             <div class="newUser">
 
-                <div class="md-form">
+                <div class="md-form form-outline" data-mdb-input-init>
                     <input type="text" name="first_name" class="form-control" value="{{ $user->first_name }}"
                            placeholder="Firstname"/>
 
@@ -23,10 +23,10 @@
                         <span class="text-danger">First Name cannot be empty</span>
                     @endif
 
-                    <label class="first_name">Firstname</label>
+                    <label class="first_name form-label">Firstname</label>
                 </div>
 
-                <div class="md-form">
+                <div class="md-form form-outline" data-mdb-input-init>
                     <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}"
                            placeholder="Lastname"/>
 
@@ -34,10 +34,10 @@
                         <span class="text-danger">Last Name cannot be empty</span>
                     @endif
 
-                    <label class="last_name">Lastname</label>
+                    <label class="last_name form-label">Lastname</label>
                 </div>
 
-                <div class="md-form">
+                <div class="md-form form-outline" data-mdb-input-init>
                     <input type="text" name="email" class="form-control" value="{{ $user->email }}"
                            placeholder="Enter A Username"/>
 
@@ -45,17 +45,18 @@
                         <span class="text-danger">Email cannot be empty</span>
                     @endif
 
-                    <label class="username">Email Address</label>
+                    <label class="username form-label">Email Address</label>
                 </div>
 
-                <div class="md-form">
-                    <label class="password">New Password</label>
+                <div class="md-form form-outline">
                     <input type="text" name="password" class="form-control" value=""
                            placeholder="Enter A New Password"/>
 
                     @if ($errors->has('password'))
                         <span class="text-danger">Password must be at least 7 characters long</span>
                     @endif
+
+                    <label class="password form-label">New Password</label>
                 </div>
 
                 <div class="md-form">

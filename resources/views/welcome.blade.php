@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="col-12 my-5" id="">
+    <div class="col-12" id="">
         <div class="col-12 col-md-6 px-0 mx-auto" id="">
 
             <div class="text-center mt-4" id="">

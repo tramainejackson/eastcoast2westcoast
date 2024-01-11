@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-12 py-4">
-            <a href="{{ route('location.index') }}" class="btn btn-success ml-0">All Trips</a>
+            <a href="{{ route('location.index') }}" class="btn btn-success ms-0">All Trips</a>
         </div>
 
         <div class="col-12 col-xl-8">
@@ -17,48 +17,58 @@
 
                 @csrf
 
-                <div class="md-form">
+                <div class="form-outline mb-3" data-mdb-input-init>
                     <input type="text" name="trip_name" class="form-control" placeholder="Enter The Destination Name"/>
 
                     @if ($errors->has('trip_name'))
                         <span class="text-danger">Location name already exist or is blank. Please enter a new location name.</span>
                     @endif
 
-                    <label for="trip_name" class="">New Location</label>
+                    <label for="trip_name" class="form-label">New Location</label>
                 </div>
 
-                <div class="md-form">
-                    <select name="trip_month" class="mdb-select md-form">
-                        @foreach($getMonth as $showMonth)
-                            <option class="" value="{{ $showMonth->month_id }}">{{ $showMonth->month_name }}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <select name="trip_month" class="" data-mdb-select-init>
+                            @foreach($getMonth as $showMonth)
+                                <option class=""
+                                        value="{{ $showMonth->month_id }}">{{ $showMonth->month_name }}</option>
+                            @endforeach
+                        </select>
 
-                    <label for="trip_month" class="active mdb-main-label">Trip Month</label>
-                </div>
-
-                <div class="md-form">
-                    <select name="trip_year" class="mdb-select md-form">
-                        @foreach($getYear as $showYear)
-                            <option class="" value="{{ $showYear->year_num }}">{{ $showYear->year_num }}</option>
-                        @endforeach
-                    </select>
-
-                    <label for="trip_year" class="active">Trip Year</label>
-                </div>
-
-                <div class="md-form">
-
-                    <div class="file-field">
-                        <div class="btn btn-primary btn-sm float-left">
-                            <span>Choose trip photo</span>
-                            <input type="file" name="trip_photo" id="trip_photo">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload Trip Photo">
-                        </div>
+                        <label for="trip_month" class="form-label select-label">Trip Month</label>
                     </div>
 
+                    <div class="col-12 col-md-6">
+                        <select name="trip_year" class="" data-mdb-select-init>
+                            @foreach($getYear as $showYear)
+                                <option class="" value="{{ $showYear->year_num }}">{{ $showYear->year_num }}</option>
+                            @endforeach
+                        </select>
+
+                        <label for="trip_year" class="form-label select-label">Trip Year</label>
+                    </div>
+                </div>
+
+                {{--                <div id="dnd" class="file-upload-wrapper">--}}
+                {{--                    <input--}}
+                {{--                        id="file-upload"--}}
+                {{--                        type="file"--}}
+                {{--                        data-mdb-file-upload-init--}}
+                {{--                        class="file-upload-input"--}}
+                {{--                        data-mdb-main-error="Ooops, error here"--}}
+                {{--                        data-mdb-format-error="Bad file format (correct format ~~~)"--}}
+                {{--                    />--}}
+                {{--                </div>--}}
+
+                <div class="my-3">
+                    <div id="" class="file-upload-wrapper">
+                        <input type="file" name="trip_photo" id="trip_photo" class="file-upload-input"
+                               data-mdb-file-upload-init
+                               data-mdb-file-upload="file-upload"
+                               data-mdb-default-msg="custom message"
+                                placeholder="Add Trip Image" />
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-secondary btn-lg ml-0">Create Trip</button>
