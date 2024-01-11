@@ -1,4 +1,4 @@
-<p align="center"><a href="https://eastcoast2westcoast.com" target="_blank"><img src="https://eastcoast2westcoast.com/images/EW-logo.png" width="400" alt="E-W Logo"></a></p>
+<p align="center"><a href="https://eastcoast2westcoast.com" target="_blank"><img src="https://eastcoast2westcoast.com/images/EW-Logo.png" width="400" alt="E-W Logo"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
