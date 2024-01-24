@@ -38,7 +38,7 @@ class ContactController extends Controller
 		$contacts = Contact::all();
 		$contactsCount = Contact::all()->count();
 
-		return view('admin.contacts.index', compact('contacts', 'contactsCount'));
+		return response()->view('admin.contacts.index', compact('contacts', 'contactsCount'));
 	}
 
 	/**
@@ -47,7 +47,7 @@ class ContactController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.contacts.create');
+		return response()->view('admin.contacts.create');
 	}
 
 	/**
@@ -98,16 +98,16 @@ class ContactController extends Controller
 			} else {}
 
 			if($tripParticipant->isNotEmpty()) {
-				return redirect()->action('HomeController@index')->with('status', 'You Have Been Added To Our Contact And Will Be Updated With This Trip Information');
+				return redirect()->action([TripLocationsController::class, 'web_index'])->with('status', 'You Have Been Added To Our Contact And Will Be Updated With This Trip Information');
 			} else {
-				return redirect()->action('HomeController@index')->with('status', 'An User With This Email Address Has Already Been Added to Our Contacts and This Trip ' . $contact->email);
+				return redirect()->action([TripLocationsController::class, 'web_index'])->with('status', 'An User With This Email Address Has Already Been Added to Our Contacts and This Trip ' . $contact->email);
 			}
 
 		} else {
 			$this->validate($request, [
 				'first_name'    => 'required|max:50',
 				'last_name'     => 'required|max:50',
-				'email'         => 'unique:contacts,email',
+				'email'         => 'nullable|email|unique:contacts,email',
 				'family_size'   => 'nullable|numeric',
 			]);
 
@@ -121,7 +121,7 @@ class ContactController extends Controller
 			$contact->dob = new Carbon($request->dob);
 
 			if($contact->save()) {
-				return redirect()->action('ContactController@edit', $contact->id)->with('status', 'Contact Added Successfully');
+				return redirect()->action([ContactController::class, 'edit'], $contact->id)->with('status', 'Contact Added Successfully');
 			}
 		}
 	}
@@ -154,7 +154,7 @@ class ContactController extends Controller
 			}
 		}
 
-		return view('admin.contacts.edit', compact('contact', 'trips', 'missing_trips'));
+		return response()->view('admin.contacts.edit', compact('contact', 'trips', 'missing_trips'));
 	}
 
 	/**
@@ -375,6 +375,6 @@ class ContactController extends Controller
 		$contactsCount = Contact::all()->count();
 		$searchCriteria = $request->search;
 
-		return view('contacts.search', compact('contacts', 'deletedContacts', 'contactsCount', 'searchCriteria'));
+		return response()->view('contacts.search', compact('contacts', 'deletedContacts', 'contactsCount', 'searchCriteria'));
 	}
 }

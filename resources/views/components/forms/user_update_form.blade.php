@@ -14,7 +14,7 @@
                 <span class="text-danger">First Name cannot be empty</span>
             @endif
 
-            <label class="first_name form-label">Firstname</label>
+            <label class="form-label">Firstname</label>
         </div>
 
         <div class="md-form form-outline" data-mdb-input-init>
@@ -25,7 +25,7 @@
                 <span class="text-danger">Last Name cannot be empty</span>
             @endif
 
-            <label class="last_name form-label">Lastname</label>
+            <label class="form-label">Lastname</label>
         </div>
 
         <div class="md-form form-outline" data-mdb-input-init>
@@ -36,7 +36,7 @@
                 <span class="text-danger">Email cannot be empty</span>
             @endif
 
-            <label class="username form-label">Email Address</label>
+            <label class="form-label">Email Address</label>
         </div>
 
         <div class="md-form form-outline" data-mdb-input-init>
@@ -47,7 +47,7 @@
                 <span class="text-danger">Password must be at least 7 characters long</span>
             @endif
 
-            <label class="password form-label">New Password</label>
+            <label class="form-label">New Password</label>
         </div>
 
         <div class="text-start">
@@ -72,12 +72,12 @@
                        value="N"
                        onclick="radioSwitch(this)"
                        autocomplete="off" {{ $user->active == 'N' ? 'checked' : '' }} />
-                <label class="btn{{ $user->active == 'N' ? ' btn-success' : ' btn-outline-success' }}"
+                <label class="btn{{ $user->active == 'N' ?  ' btn-danger' : ' btn-outline-danger' }}"
                        for="active_user_0">No</label>
             </div>
         </div>
 
-        <div class="mt-3">
+        <div class="mt-4 mb-5 pb-5">
             <div class="row justify-content-center align-items-center">
                 <div class="col text-end">
                     <button class="btn btn-info ms-md-0" type="submit">Update User</button>

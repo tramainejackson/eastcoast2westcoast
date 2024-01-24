@@ -64,6 +64,21 @@ class TripLocations extends Model
 //	}
 
 	/**
+	 * Get the trip photo for the vacation.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getTripPhoto($value)
+	{
+        if($value == null) {
+            $value = '/images/skyline.jpg';
+        }
+
+		return $value;
+	}
+
+	/**
 	 * Get the conditions for the trip.
 	 */
 	public function conditions()

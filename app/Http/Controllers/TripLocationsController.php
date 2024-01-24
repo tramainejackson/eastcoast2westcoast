@@ -501,17 +501,22 @@ class TripLocationsController extends Controller
 	 *
 	 * @param  \App\Models\TripLocations  $location
 	 * @param \App\Models\DistributionList  $participant
-	 * @return \Illuminate\Http\Response
+	 * @return string
 	 */
-	public function add_contact(Request $request, Contact $participant, TripLocations $location) {
-		$location->participants()->create([
-			'contact_id'    => $participant->id,
-			'first_name'    => $participant->first_name,
-			'last_name'     => $participant->last_name,
-			'email'         => $participant->email,
-			'phone'         => $participant->phone,
-		]);
+	public function add_contact(Request $request) {
+        $trip = TripLocations::find($request->trip);
+        $contact = Contact::find($request->contact);
 
-		return 'Successful';
+        if($trip != NULL && $contact != NULL) {
+            $trip->participants()->create([
+                'contact_id'    => $contact->id,
+                'first_name'    => $contact->first_name,
+                'last_name'     => $contact->last_name,
+                'email'         => $contact->email,
+                'phone'         => $contact->phone,
+            ]);
+
+            return $contact->first_name . ' ' . $contact->last_name . ' has been added to ' . $trip->trip_location . ' successfully';
+        }
 	}
 }

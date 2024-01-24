@@ -71,7 +71,7 @@
                        value="N"
                        onclick="radioSwitch(this)"
                        autocomplete="off" checked />
-                <label class="btn btn-success"
+                <label class="btn btn-danger"
                        for="active_user_0">No</label>
             </div>
         </div>

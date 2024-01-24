@@ -1,12 +1,12 @@
 <x-app-layout>
 
-    <div class="showTrip col-12 px-0 {{ Auth::check() ? 'mt-n5' : 'mt-5' }}"
+    <div class="showTrip col-12 px-0 position-relative {{ Auth::check() ? 'mt-n5' : 'mt-5' }}"
          style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url({{ $tripLocation->trip_photo != null ? asset('storage/' . str_ireplace('public/', '', $tripLocation->trip_photo)) : '/images/skyline.jpg' }})">
 
-        <div class="col pt-4 rgba-stylish-strong">
+        <div class="col mt-4 pb-5">
+            <div class="mask" style="background-color: rgba(62, 69, 81, 0.7)"></div>
 
             <div class="container-fluid text-light position-relative" style="z-index:1;">
-
                 <div class="row">
 
                     <div class="col-12 col-xl-2 d-flex align-items-center justify-content-center" id="">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="col-12 col-xl-8" id="">
-                        <h1 class="text-center display-2 locationName">{{ $tripLocation->trip_location }}</h1>
+                        <h1 class="text-center display-2 locationName pt-2">{{ $tripLocation->trip_location }}</h1>
                     </div>
 
                     <div class="col-12 col-xl-2 d-flex align-items-center justify-content-center" id="">
@@ -48,7 +48,8 @@
 
                             <h2 class="text-center vacationIteneraryHeader w-100">Events For The Trip</h2>
 
-                            <table class="table table-responsive table-sm termsItenery w-auto white-text">
+                            <table class="table table-responsive table-sm termsItenery w-auto text-white"
+                                   style="--mdb-table-bg:#00000000; --mdb-table-color: #fff;">
 
                                 @if($tripLocation->activities->count() > 0)
 
@@ -178,72 +179,90 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-12 col-md-11 col-xxl-9 mx-auto">
 
-                <div class="row mx-auto progress-bar progress-bar-striped bg-secondary text-black py-5 rounded">
+                        <div class="progress rounded mt-5 d-block" id="trip_terms_info" style="height: initial;">
 
-                    <div class="col-12">
-                        <h1 class="text-center">Terms and Conditions</h1>
+                            <div class="progress-bar progress-bar-striped bg-secondary">
+                                <div class="row text-black py-5">
+
+                                    <div class="col-12">
+                                        <h1 class="text-center">Terms and Conditions</h1>
+                                    </div>
+
+                                    <div class="col-12">
+
+                                        @if($tripLocation->conditions->isNotEmpty())
+
+                                            @foreach($tripLocation->conditions as $conditionOption)
+                                                <p class="terms">{{ $conditionOption->description }}</p>
+                                            @endforeach
+
+                                        @else
+                                            <p class="terms">No Terms and Conditions Added Yet</p>
+                                        @endif
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-12">
-
-                        @if($tripLocation->conditions->isNotEmpty())
-
-                            @foreach($tripLocation->conditions as $conditionOption)
-                                <p class="terms">{{ $conditionOption->description }}</p>
-                            @endforeach
-
-                        @else
-                            <p class="terms">No Terms and Conditions Added Yet</p>
-                        @endif
-
-                    </div>
-
                 </div>
 
+                <div class="row">
+                    <div class="col-12 col-md-11 col-xxl-9 mx-auto">
 
-                <div
-                    class="row mx-auto progress-bar progress-bar-striped bg-info black-text py-5 rounded mt-2 flex-row">
+                        <div class="progress rounded mt-2" id="trip_contact_info" style="height: initial;">
 
-                    <div class="col-12">
-                        <h1 class="text-center">Contact Information</h1>
-                    </div>
+                            <div class="progress-bar progress-bar-striped bg-info">
+                                <div class="row py-5 text-black">
+                                    <div class="col-12">
+                                        <h1 class="text-center">Contact Information</h1>
+                                    </div>
 
-                    <div class="col-12">
-                        <h3 class="text-center text-wrap">If you have any further questions in regards to this trip or
-                            any
-                            information listed, here is where we can be contacted</h3>
-                    </div>
+                                    <div class="col-12">
+                                        <h3 class="text-center text-wrap fw-light px-3">If you have any further
+                                            questions in regards to this trip or any information listed, here is where
+                                            we can be contacted</h3>
+                                    </div>
 
-                    <div class="col-5">
-                        <div class="card h-100" id="">
-                            <div class="card-body">
-                                <h4 class="card-title">Deborah Jackson</h4>
-                                <p class="contact_email mb-1"><span class="font-weight-bold font-italic">Email:</span>&nbsp;<span><a
-                                            href="mailto:jacksond1961@yahoo.com"
-                                            class="">jacksond1961@yahoo.com</a></span>
-                                </p>
-                                <p class="contact_email"><span
-                                        class="font-weight-bold font-italic">Phone:</span>&nbsp;<span>215-472-6036 (EST)</span>
-                                </p>
+                                    <div class="col-5 mx-auto">
+                                        <div class="card h-100" id="">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Deborah Jackson</h4>
+                                                <p class="contact_email mb-1"><span
+                                                        class="fw-bold fst-italic">Email:</span>&nbsp;<span><a
+                                                            href="mailto:jacksond1961@yahoo.com"
+                                                            class="">jacksond1961@yahoo.com</a></span>
+                                                </p>
+                                                <p class="contact_email"><span
+                                                        class="fw-bold fst-italic">Phone:</span>&nbsp;<span>215-472-6036 (EST)</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5 mx-auto">
+                                        <div class="card h-100" id="">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Rhonda Lambert</h4>
+                                                <p class="contact_email mb-1"><span
+                                                        class="fw-bold fst-italic">Email:</span>&nbsp;<span><a
+                                                            href="mailto:rhonda.lambert@sbcglobal.com" class="">rhonda.lambert@sbcglobal.com</a></span>
+                                                </p>
+                                                <p class="contact_email"><span
+                                                        class="fw-bold fst-italic">Phone:</span>&nbsp;<span>707-208-7290 (PST)</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-5">
-                        <div class="card h-100" id="">
-                            <div class="card-body">
-                                <h4 class="card-title">Rhonda Lambert</h4>
-                                <p class="contact_email mb-1"><span class="font-weight-bold font-italic">Email:</span>&nbsp;<span><a
-                                            href="mailto:rhonda.lambert@sbcglobal.com" class="">rhonda.lambert@sbcglobal.com</a></span>
-                                </p>
-                                <p class="contact_email"><span
-                                        class="font-weight-bold font-italic">Phone:</span>&nbsp;<span>707-208-7290 (PST)</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -253,86 +272,12 @@
 
             <!-- Sign up for this trip form -->
             <div class="container-fluid position-relative pt-2 pb-4 mt-5" style="z-index:1;">
-
                 <div class="row">
 
-                    <div class="page_signup_form col-12 col-md-8 py-1 mx-auto">
-
-                        <h3 class="text-center text-light">Sign Me Up</h3>
-
-                        <form class="signupForm" id="" action="{{ route('contacts.store') }}" method="POST"
-                              enctype="multipart/form-data">
-
-                            @csrf
-
-                            <table class="table">
-
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="first_name" class="text-light">First Name:</label>
-                                            <input class="form-control" type="text" name="first_name"
-                                                   value="{{ old('first_name') }}"
-                                                   placeholder="Enter First Name" {{ $errors->has('first_name') ? 'autofocus' : '' }} />
-
-                                            @if($errors->has('first_name'))
-                                                <span class="text-danger">First name cannot empty or more than 50 characters</span>
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="last_name" class="text-light">Last Name:</label>
-                                            <input class="form-control" type="text" name="last_name"
-                                                   value="{{ old('last_name') }}"
-                                                   placeholder="Enter Last Name" {{ $errors->has('last_name') ? 'autofocus' : '' }} />
-
-                                            @if ($errors->has('last_name'))
-                                                <span class="text-danger">Last name cannot empty or more than 50 characters</span>
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <label for="email" class="text-light">Email:</label>
-                                            <input class="form-control" type="email" name="email"
-                                                   value="{{ old('email') }}"
-                                                   placeholder="Enter Email Address" {{ $errors->has('email') ? 'autofocus' : '' }} />
-
-                                            @if($errors->has('email'))
-                                                <span class="text-danger">Email address cannot empty or more than 100 characters</span>
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="2"><input type="submit" name="submit"
-                                                           class="pageSubmit btn btn-success" value="Send Me Info"/>
-                                    </td>
-                                </tr>
-
-                            </table>
-
-                            <input type="number" name="trip_id" class="hidden" value="{{ $tripLocation->id }}" hidden/>
-
-                            <div class="paymentInstructions text-light">
-                                <p class="m-0 py-3">For everyone who has a PayPal account and would like to pay
-                                    electronically, please send all payments to jacksond1961@yahoo.com by selecting the
-                                    option to send money to friends and family. <a href="http://www.paypal.com"
-                                                                                   target="_blank">Click here</a> to go
-                                    to the PayPal website.</p>
-                            </div>
-                        </form>
-                    </div>
+                    @include('components.forms.web_contact_create_form')
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

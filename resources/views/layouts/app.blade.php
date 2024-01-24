@@ -62,7 +62,7 @@
 
 {{--PAGE CONTENT--}}
 <div class="">
-    <main class="" style="margin-top: 75px;">
+    <main class="container-fluid" style="margin-top: 75px;">
 
         @if(Auth::guest())
             <div class="col-12 mb-n2" id="">
@@ -74,8 +74,9 @@
         {{ $slot }}
 
         <div
-            class="alert fade"
+            class="alert fade animate"
             id="return-data-alert"
+            data-mdb-alert-init
             role="alert"
             data-mdb-color="success"
             data-mdb-position="top-right"
@@ -84,7 +85,7 @@
             data-mdb-append-to-body="true"
             data-mdb-hidden="true"
             data-mdb-autohide="true"
-            data-mdb-delay="4000">
+            data-mdb-delay="8000">
             <p class="alertBody m-0 p-0 text-center"></p>
         </div>
     </main>

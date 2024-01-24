@@ -1,19 +1,17 @@
 <x-app-layout>
 
     <div class="col-12 px-5" id="">
-        <div class="row">
 
-            <div class="col-12">
-                <div id="users_page_header" class="">
-                    <h1 class="pageTopicHeader">All Contacts</h1>
+        <div class="container my-3 pt-3" id="contacts_links">
+            <div class="row">
+                <div id="" class="col-12 col-md-6">
+                    <h1 class="pageTopicHeader text-center text-md-start">All Contacts</h1>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-
-            <div class="col py-4">
-                <a href="{{ route('contacts.create') }}" class="btn btn-success">Create New Contact</a>
+                <div class="col-12 col-md-6 text-center">
+                    <x-button-link href="{{ route('contacts.create') }}" class="btn-primary ms-3">Create Contact
+                    </x-button-link>
+                </div>
             </div>
         </div>
 
@@ -37,13 +35,13 @@
                     <tbody>
                     @foreach($contacts as $contact)
                         <tr>
-                            <td class="align-middle"></td>
+                            <td><a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
+                            </td>
                             <td class="align-middle">{{ $contact->full_name() }}</td>
                             <td class="align-middle">{{ $contact->email }}</td>
                             <td class="align-middle">{{ $contact->phone }}</td>
                             <td class="align-middle">{{ $contact->family_size }}</td>
-                            <td><a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-default">Edit</a>
-                            </td>
+                            <td class="align-middle"></td>
                         </tr>
                     @endforeach
                     </tbody>

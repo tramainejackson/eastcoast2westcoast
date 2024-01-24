@@ -1,4 +1,4 @@
-<!-- Users Form -->
+<!-- Contacts Form -->
 <form name="new_contact_user" class="" action="{{ route('contacts.store') }}" method="POST">
 
     @csrf
@@ -32,7 +32,7 @@
                    placeholder="Enter Email Address"/>
 
             @if ($errors->has('email'))
-                <span class="text-danger">Email cannot be empty</span>
+                <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
 
             <label class="form-label">Email Address</label>

@@ -1,8 +1,10 @@
 <x-app-layout>
 
+    @section('title', 'Create A New Admin User - Eastcoast2Westcoast')
+
     <div class="col-12 px-5" id="all_users">
 
-        <div class="container-fluid my-3 pt-3" id="admin_users_links">
+        <div class="container my-3 pt-3" id="admin_users_links">
             <div class="row">
                 <div id="" class="col-12 col-md-6">
                     <h1 class="pageTopicHeader text-center text-md-start">Create New Admin User</h1>
@@ -13,10 +15,10 @@
                     </x-button-link>
                 </div>
             </div>
-        </div>
 
-        {{--Update Form--}}
-        @include('components.forms.user_create_form')
+            {{--Update Form--}}
+            @include('components.forms.user_create_form')
+        </div>
     </div>
 
 </x-app-layout>

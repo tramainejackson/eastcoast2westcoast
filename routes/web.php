@@ -51,7 +51,7 @@ Route::resource('contacts', ContactController::class);
 //
 //Route::patch('/locations/ajax_update', 'TripLocationsController@ajax_update');
 //
-//Route::patch('/locations/add_contact/{participant}/{location}', 'TripLocationsController@add_contact');
+Route::patch('/locations/add_contact', [TripLocationsController::class, 'add_contact']);
 //
 //Route::delete('/locations/ajax_delete', 'TripLocationsController@ajax_delete');
 

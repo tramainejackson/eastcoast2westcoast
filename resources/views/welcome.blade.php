@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="divider" id=""></div>
+    <hr class="hr hr-blurry"/>
 
     <div class="col-12 px-0 mt-5 mx-auto" id="">
 
@@ -69,56 +69,54 @@
                     destinations in the works. Take a look at some of the places we've already been</p>
             </div>
         </div>
+    </div>
+
+    <div class="container-fluid mb-5 pb-5" id="">
 
         @if($inactiveTrips->count() > 0)
 
-            <div class="col-11 px-0 mx-auto" id="">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 @foreach($inactiveTrips as $trip)
 
                     @php $tripMonth = DB::table('vacation_month')->select('month_name')->where('month_id', $trip->trip_month)->first(); @endphp
 
-                    @if($loop->first || $loop->iteration % 3 == 1)
-                        <!-- Card deck -->
-                        <div class="card-deck">
-                            @endif
+                    <!-- Card deck -->
+                    <div class="col">
 
-                            <!-- Card -->
-                            <div class="card mb-4">
+                        <!-- Card -->
+                        <div class="card h-100">
 
-                                <!--Card image-->
-                                <div class="view overlay">
-                                    <img class="card-img-top"
-                                         src="{{ Storage::disk('local')->has($trip->trip_photo) ? asset('storage/' . str_ireplace('public/', '', $trip->trip_photo)) : '/images/skyline.jpg' }}"
-                                         alt="Card image cap">
-                                    <a href="{{ route('location.show', $trip->id) }}">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-
-                                <!--Card content-->
-                                <div class="card-body">
-
-                                    <!--Title-->
-                                    <h3 class="card-title">{{ ucwords($trip->trip_location) }}</h3>
-
-                                    <!--Sub Title-->
-                                    <h5 class="card-title">{{ ucwords($tripMonth->month_name) . ' ' . $trip->trip_year }}</h5>
-
-                                    <!--Text-->
-                                    <p class="card-text">{{ ucwords($trip->description) }}</p>
-
-                                    <!-- Read more button -->
-                                    <a class="btn btn-success btn-md" href="{{ route('location.show', $trip->id) }}">View
-                                        More</a>
-                                </div>
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img class="card-img-top"
+                                     src="{{ Storage::disk('local')->has($trip->trip_photo) ? asset('storage/' . str_ireplace('public/', '', $trip->trip_photo)) : '/images/skyline.jpg' }}"
+                                     alt="Card image cap">
+                                <a href="{{ route('location.show', $trip->id) }}">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
                             </div>
-                            <!-- Card -->
 
-                            @if($loop->iteration % 3 == 0)
+                            <!--Card content-->
+                            <div class="card-body">
+
+                                <!--Title-->
+                                <h3 class="card-title">{{ ucwords($trip->trip_location) }}</h3>
+
+                                <!--Sub Title-->
+                                <h5 class="card-title">{{ ucwords($tripMonth->month_name) . ' ' . $trip->trip_year }}</h5>
+
+                                <!--Text-->
+                                <p class="card-text">{{ ucwords($trip->description) }}</p>
+
+                                <!-- Read more button -->
+                                <a class="btn btn-success btn-md" href="{{ route('location.show', $trip->id) }}">View
+                                    More</a>
+                            </div>
                         </div>
-                        <!-- Card deck -->
-                    @endif
+                        <!-- Card -->
+                    </div>
+                    <!-- Card deck -->
                 @endforeach
             </div>
         @else
